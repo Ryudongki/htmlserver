@@ -11,13 +11,24 @@ def hello_world():
 @app.route('/data', methods=['POST'])
 def data():
     fp = open(os.path.join('C:/Users/user/PycharmProjects/untitled2\data', request.form['m'], 'output{}월{}일.txt'.format(request.form['m'], request.form['d'])))
-    print(fp.readlines())
-    data = fp.readlines()
-    key = 1
 
-    a = {'a': 'abcd'}
+    a = fp.readlines()
+    dic = {}
+    temp1, temp2, temp3 = [], [], []
+    num1 = 0
 
-    resp = make_response(json.dumps(a))
+    for k in a:
+        temp = k.split(" ")
+        temp = [float(t) for t in temp[:]]
+        temp1.append(temp[0])
+        temp2.append(temp[1])
+        temp3.append(temp[3])
+        dic['a' + str(num1)] = temp1[num1]
+        dic['b' + str(num1)] = temp2[num1]
+        dic['c' + str(num1)] = temp3[num1]
+        num1 = num1 + 1
+
+    resp = make_response(json.dumps(dic))
     resp.status_code = 200
     resp.headers['Access-Control-Allow-Origin'] = '*'
     print(resp)
