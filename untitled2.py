@@ -23,9 +23,7 @@ def data():
         temp1.append(temp[0])
         temp2.append(temp[1])
         temp3.append(temp[3])
-        dic['a' + str(num1)] = temp1[num1]
-        dic['b' + str(num1)] = temp2[num1]
-        dic['c' + str(num1)] = temp3[num1]
+        dic['a' + str(num1)] = int(temp1[num1]), int(temp2[num1]), temp3[num1]
         num1 = num1 + 1
 
     resp = make_response(json.dumps(dic))
