@@ -1,0 +1,227 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+<input type="radio" name="test" id="test1" value="1"> year
+<input type="radio" name="test" id="test2" value="2"> month
+<input type="radio" name="test" id="test3" value="3"> day
+<br>
+
+<!--<select name = "year" id="y">-->
+<!--<option value="2017">2017<option value="2018">2018</option>-->
+<!--</select>-->
+<select name="month" id="m">
+    <option value="1">1
+    <option value="2">2
+    <option value="3">3
+    <option value="4">4
+    <option value="5">5
+    <option value="6">6
+    <option value="7">7
+    <option value="8">8
+    <option value="9">9
+    <option value="10">10
+    <option value="11">11
+    <option value="12">12</option>
+</select>
+<select name="day" id="d">
+    <option value="1">1
+    <option value="2">2
+    <option value="3">3
+    <option value="4">4
+    <option value="5">5
+    <option value="6">6
+    <option value="7">7
+    <option value="8">8
+    <option value="9">9
+    <option value="10">10
+    <option value="11">11
+    <option value="12">12
+    <option value="13">13
+    <option value="14">14
+    <option value="15">15
+    <option value="16">16
+    <option value="17">17
+    <option value="18">18
+    <option value="19">19
+    <option value="20">20
+    <option value="21">21
+    <option value="22">22
+    <option value="23">23
+    <option value="24">24
+    <option value="25">25
+    <option value="26">26
+    <option value="27">27
+    <option value="28">28
+    <option value="29">29
+    <option value="30">30
+    <option value="31">31</option>
+</select>
+
+<button type="button" onclick="div_OnOff()">CHECK</button>
+
+<div id="columnchart1" style="display: none;"></div>
+<div id="columnchart2" style="display: none;"></div>
+<div id="columnchart3" style="display: none;"></div>
+</body>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([//hello by ngh hahahahahahahahahahahaha
+            ["Element", "Density", {role: "style"}],
+            ["Copper", 8.94, "#b87333"],
+            ["Silver", 10.49, "silver"],
+            ["Gold", 19.30, "gold"],
+            ["Platinum", 21.45, "color: #e5e4e2"]
+        ]);
+
+        // var data = google.visualization.DataTable(
+        //     {
+        //         cols : [{id : 'task', label : 'Employee Name', type : 'string'},
+        //                   {id : 'startDate', label : 'Start Date', type : 'date'}],
+        //         rows : [{c:[{v:'Mike'}, {v : new Date(2008, 1, 28), f : 'February 28, 2008'}]},
+        //                  {c:[{v : 'Bob'}, {v : new Date(2007, 5, 1)}]}
+        //                 ]
+        //     }
+        // )
+
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            {
+                calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation"
+            },
+            2]);
+
+        var options = {
+            title: "Density of Precious Metals, in g/cm^3",
+            width: 600,
+            height: 400,
+            bar: {groupWidth: "95%"},
+            legend: {position: "none"},
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart1"));
+        chart.draw(view, options);
+    }
+</script>
+<script type="text/javascript">
+    google.charts.load("current", {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ["Element", "Density", {role: "style"}],
+            ["Copper", 8.94, "#b87333"],
+            ["Silver", 10.49, "silver"],
+            ["Gold", 19.30, "gold"],
+            ["Platinum", 40.00, "color: #e5e4e2"]
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            {
+                calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation"
+            },
+            2]);
+
+        var options = {
+            title: "Density of Precious Metals, in g/cm^3",
+            width: 600,
+            height: 400,
+            bar: {groupWidth: "95%"},
+            legend: {position: "none"},
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart2"));
+        chart.draw(view, options);
+    }
+</script>
+
+<script type="text/javascript">
+    google.charts.load("current", {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ["Element", "Density", {role: "style"}],
+            ["Copper", 8.94, "#b87333"],
+            ["Silver", 10.49, "silver"],
+            ["Gold", 19.30, "gold"],
+            ["Platinum", 50.45, "color: #e5e4e2"]
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            {
+                calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation"
+            },
+            2]);
+
+        var options = {
+            title: "Density of Precious Metals, in g/cm^3",
+            width: 600,
+            height: 400,
+            bar: {groupWidth: "95%"},
+            legend: {position: "none"},
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart3"));
+        chart.draw(view, options);
+    }
+</script>
+
+<script>
+    function div_OnOff() {
+        var search_word = "konfu";
+        var qurl = "/data";
+        $.ajax({
+            type: "POST",
+            cache: false,
+            data: {m: (document.getElementById('m').selectedIndex + 1), d: (document.getElementById('d').selectedIndex + 1)},
+            url: qurl,
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (jqXHR) {
+                alert("error: " + jqXHR.status);
+                console.log(jqXHR);
+            }
+        });
+
+
+    //  console.log(file.readln());
+    if (document.getElementById('test1').checked) {
+        document.getElementById('columnchart1').style.display = "";
+        document.getElementById('columnchart2').style.display = "none";
+        document.getElementById('columnchart3').style.display = "none";
+    }
+    else if (document.getElementById('test2').checked) {
+        document.getElementById('columnchart2').style.display = "";
+        document.getElementById('columnchart1').style.display = "none";
+        document.getElementById('columnchart3').style.display = "none";
+    }
+    else {
+        document.getElementById('columnchart3').style.display = "";
+        document.getElementById('columnchart1').style.display = "none";
+        document.getElementById('columnchart2').style.display = "none";
+    }
+    }
+</script>
+
+
+</html>
