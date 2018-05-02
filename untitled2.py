@@ -16,7 +16,7 @@ def data():
     key = 1
 
     a = {'a': 'abcd'}
-    
+
     resp = make_response(json.dumps(a))
     resp.status_code = 200
     resp.headers['Access-Control-Allow-Origin'] = '*'
