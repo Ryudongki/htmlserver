@@ -10,26 +10,20 @@ def hello_world():
 
 @app.route('/data', methods=['POST'])
 def data():
-    fp = open(os.path.join('C:/Users/user/PycharmProjects/untitled2\data', request.form['m'], 'output{}월{}일.txt'.format(request.form['m'], request.form['d'])))
+    data = [["date", "power_consumption", {'role': 'style'}]]
+    with open(os.path.join('C:/Users/user/PycharmProjects/untitled2\data', request.form['m'], 'output{}월{}일.txt'.format(request.form['m'], request.form['d']))) as fp:
+        lines = fp.readlines()
 
-    a = fp.readlines()
-    dic = {}
-    temp1, temp2, temp3 = [], [], []
-    num1 = 0
+        n = 0
+        for line in lines:
+            n += 1
+            line = line.strip()
+            mon, day, _, power = line.split()
+            data.append(["{}월{}일{}분기".format(mon, day, n), float(power), "#FF0000"])
 
-    for k in a:
-        temp = k.split(" ")
-        temp = [float(t) for t in temp[:]]
-        temp1.append(temp[0])
-        temp2.append(temp[1])
-        temp3.append(temp[3])
-        dic['a' + str(num1)] = int(temp1[num1]), int(temp2[num1]), temp3[num1]
-        num1 = num1 + 1
-
-    resp = make_response(json.dumps(dic))
+    resp = make_response(json.dumps({'data': data}))
     resp.status_code = 200
     resp.headers['Access-Control-Allow-Origin'] = '*'
-    print(resp)
     return resp
 
 if __name__ == '__main__':

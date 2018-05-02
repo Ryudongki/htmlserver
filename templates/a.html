@@ -150,18 +150,10 @@
 
 <script type="text/javascript">
     google.charts.load("current", {packages: ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+    //google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-            ["Element", "Density", {role: "style"}],
-            ["Copper", 8.94, "#b87333"],
-            ["Silver", 10.49, "silver"],
-            ["Gold", 19.30, "gold"],
-            ["Platinum", 50.45, "color: #e5e4e2"]
-        ]);
-
+    function draw_chart(chart_data) {
+        data = google.visualization.arrayToDataTable(chart_data)
         var view = new google.visualization.DataView(data);
         view.setColumns([0, 1,
             {
@@ -182,9 +174,6 @@
         var chart = new google.visualization.ColumnChart(document.getElementById("columnchart3"));
         chart.draw(view, options);
     }
-</script>
-
-<script>
     function div_OnOff() {
         var search_word = "konfu";
         var qurl = "/data";
@@ -195,7 +184,7 @@
             url: qurl,
             dataType: "json",
             success: function (data) {
-                console.log(data);
+                draw_chart(data['data'])
             },
             error: function (jqXHR) {
                 alert("error: " + jqXHR.status);
@@ -204,22 +193,22 @@
         });
 
 
-    //  console.log(file.readln());
-    if (document.getElementById('test1').checked) {
-        document.getElementById('columnchart1').style.display = "";
-        document.getElementById('columnchart2').style.display = "none";
-        document.getElementById('columnchart3').style.display = "none";
-    }
-    else if (document.getElementById('test2').checked) {
-        document.getElementById('columnchart2').style.display = "";
-        document.getElementById('columnchart1').style.display = "none";
-        document.getElementById('columnchart3').style.display = "none";
-    }
-    else {
-        document.getElementById('columnchart3').style.display = "";
-        document.getElementById('columnchart1').style.display = "none";
-        document.getElementById('columnchart2').style.display = "none";
-    }
+        //  console.log(file.readln());
+        if (document.getElementById('test1').checked) {
+            document.getElementById('columnchart1').style.display = "";
+            document.getElementById('columnchart2').style.display = "none";
+            document.getElementById('columnchart3').style.display = "none";
+        }
+        else if (document.getElementById('test2').checked) {
+            document.getElementById('columnchart2').style.display = "";
+            document.getElementById('columnchart1').style.display = "none";
+            document.getElementById('columnchart3').style.display = "none";
+        }
+        else {
+            document.getElementById('columnchart3').style.display = "";
+            document.getElementById('columnchart1').style.display = "none";
+            document.getElementById('columnchart2').style.display = "none";
+        }
     }
 </script>
 
