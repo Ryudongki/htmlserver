@@ -107,43 +107,10 @@
             width: 600,
             height: 400,
             bar: {groupWidth: "95%"},
+            series : {5: {type: 'line'}},
             legend: {position: "none"},
         };
         var chart = new google.visualization.ColumnChart(document.getElementById("columnchart1"));
-        chart.draw(view, options);
-    }
-</script>
-<script type="text/javascript">
-    google.charts.load("current", {packages: ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ["Element", "Density", {role: "style"}],
-            ["Copper", 8.94, "#b87333"],
-            ["Silver", 10.49, "silver"],
-            ["Gold", 19.30, "gold"],
-            ["Platinum", 40.00, "color: #e5e4e2"]
-        ]);
-
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-            {
-                calc: "stringify",
-                sourceColumn: 1,
-                type: "string",
-                role: "annotation"
-            },
-            2]);
-
-        var options = {
-            title: "Density of Precious Metals, in g/cm^3",
-            width: 600,
-            height: 400,
-            bar: {groupWidth: "95%"},
-            legend: {position: "none"},
-        };
-        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart2"));
         chart.draw(view, options);
     }
 </script>
@@ -153,30 +120,44 @@
     //google.charts.setOnLoadCallback(drawChart);
 
     function draw_chart(chart_data) {
-        data = google.visualization.arrayToDataTable(chart_data)
+        var data = google.visualization.arrayToDataTable(chart_data);
         var view = new google.visualization.DataView(data);
         view.setColumns([0, 1,
             {
                 calc: "stringify",
-                sourceColumn: 1,
+                {#sourceColumn: 1,#}
                 type: "string",
                 role: "annotation"
             },
             2]);
 
         var options = {
-            title: "Density of Precious Metals, in g/cm^3",
-            width: 600,
-            height: 400,
-            bar: {groupWidth: "95%"},
-            legend: {position: "none"},
+            title: "Daily used power",
+            width: 1000,
+            height: 1000,
+            bar: {groupWidth: "10%"},
+            seriesType : 'bars',
+            series : {0: {type: 'line'}},
+            {#legend: {position: "none"},#}
         };
-        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart3"));
+
+        if(document.getElementById("test2").checked){
+            var chart = new google.visualization.ColumnChart(document.getElementById("columnchart2"));
+        }
+        else if(document.getElementById("test3").checked){
+            var chart = new google.visualization.ColumnChart(document.getElementById("columnchart3"));
+        }
         chart.draw(view, options);
     }
     function div_OnOff() {
+        if(document.getElementById("test2").checked){
+            var qurl = "/data1";
+        }
+        else if(document.getElementById("test3").checked) {
+            var qurl = "/data2";
+        }
         var search_word = "konfu";
-        var qurl = "/data";
+
         $.ajax({
             type: "POST",
             cache: false,
@@ -184,6 +165,7 @@
             url: qurl,
             dataType: "json",
             success: function (data) {
+                console.log(data);
                 draw_chart(data['data'])
             },
             error: function (jqXHR) {
@@ -191,7 +173,6 @@
                 console.log(jqXHR);
             }
         });
-
 
         //  console.log(file.readln());
         if (document.getElementById('test1').checked) {
