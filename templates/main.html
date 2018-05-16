@@ -131,15 +131,30 @@
             },
             2]);
 
-        var options = {
-            title: "Daily used power",
-            width: 1000,
-            height: 1000,
-            bar: {groupWidth: "10%"},
-            seriesType : 'bars',
-            series : {0: {type: 'line'}},
-            {#legend: {position: "none"},#}
-        };
+        if(document.getElementById("test2").checked)
+        {
+            var options = {
+                title: "Monthly used power",
+                width: 1000,
+                height: 1000,
+                bar: {groupWidth: "10%"},
+                seriesType : 'bars',
+                series : {0: {type: 'line'}},
+                {#legend: {position: "none"},#}
+            };
+        }
+        else if(document.getElementById("test3").checked)
+        {
+            var options = {
+                title: "Daily used power",
+                width: 1000,
+                height: 1000,
+                bar: {groupWidth: "10%"},
+                seriesType : 'bars',
+                series : {0: {type: 'line'}},
+                {#legend: {position: "none"},#}
+            };
+        }
 
         if(document.getElementById("test2").checked){
             var chart = new google.visualization.ColumnChart(document.getElementById("columnchart2"));

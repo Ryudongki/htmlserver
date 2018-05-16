@@ -41,7 +41,7 @@ def data2():
             line = line.strip()
             mon, day, _, power = line.split()
             temp += float(power)
-            if((n+1) % 4 == 0) :
+            if((n+1) % 4 == 0):
                 data.append(["{}월{}일{}시".format(mon, day, int(n/4)), float(temp), "#FF0000"])
                 temp = 0
             n += 1
