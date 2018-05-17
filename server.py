@@ -11,16 +11,20 @@ def hello_world():
 @app.route('/data1', methods=['POST'])
 def data1():
     data = [["date", "power_consumption", {'role': 'style'}]]
-    with open(os.path.join('C:/Users/user/PycharmProjects/untitled2\data', request.form['m'],
+    with open(os.path.join('/home/jaeshin/htmlserver/data', request.form['m'],
                            'output{}.txt'.format(request.form['m']))) as fp:
         lines = fp.readlines()
 
         n = 0
+        temp = 0
         for line in lines:
-            n += 1
             line = line.strip()
             mon, day, _, power = line.split()
-            data.append(["{}월{}일".format(mon, day), float(power), "#FF0000"])
+            temp += float(power)
+            if((n+1) % 24 == 0):
+                data.append(["{}월{}일".format(mon, day, int(n/24)), float(temp), "#FF0000"])
+                temp = 0;
+            n += 1
 
     resp = make_response(json.dumps({'data': data}))
     resp.status_code = 200
@@ -30,14 +34,13 @@ def data1():
 @app.route('/data2', methods=['POST'])
 def data2():
     data = [["date", "power_consumption", {'role': 'style'}]]
-    with open(os.path.join('C:/Users/user/PycharmProjects/untitled2\data', request.form['m'],
+    with open(os.path.join('/home/jaeshin/htmlserver/data', request.form['m'],
                            'output{}월{}일.txt'.format(request.form['m'], request.form['d']))) as fp:
         lines = fp.readlines()
 
         n = 0
         temp = 0
         for line in lines:
-
             line = line.strip()
             mon, day, _, power = line.split()
             temp += float(power)
