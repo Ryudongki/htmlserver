@@ -135,24 +135,22 @@
         {
             var options = {
                 title: "Monthly used power",
-                width: 1000,
+                width: 1500,
                 height: 1000,
-                bar: {groupWidth: "10%"},
-                seriesType : 'bars',
                 series : {0: {type: 'line'}},
-                {#legend: {position: "none"},#}
+                legend : {position: "top", textStyle: {fontsize: 12}},
+                pointSize : 5,
             };
         }
         else if(document.getElementById("test3").checked)
         {
             var options = {
                 title: "Daily used power",
-                width: 1000,
+                width: 1500,
                 height: 1000,
-                bar: {groupWidth: "10%"},
-                seriesType : 'bars',
                 series : {0: {type: 'line'}},
-                {#legend: {position: "none"},#}
+                legend : {position: "top", textStyle: {fontsize: 12}},
+                pointSize : 5,
             };
         }
 

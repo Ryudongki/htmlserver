@@ -16,11 +16,18 @@ def data1():
         lines = fp.readlines()
 
         n = 0
+        temp = 0
         for line in lines:
-            n += 1
+            #n += 1
             line = line.strip()
             mon, day, _, power = line.split()
-            data.append(["{}월{}일".format(mon, day), float(power), "#FF0000"])
+            #data.append(["{}월{}일".format(mon, day), float(power), "#FF0000"])
+            temp +=float(power)
+
+            if((n+1) % 24 ==0):
+                data.append(["{}월{}일".format(mon, day), float(power), "#FF0000"])
+                temp = 0
+            n += 1
 
     resp = make_response(json.dumps({'data': data}))
     resp.status_code = 200
